@@ -23,6 +23,7 @@
     "recharts": "^2.15.1",
     "redux-toolkit": "^1.1.2",
     "slick-carousel": "^1.8.1",
+    "tailwind-scrollbar": "^4.0.2",
     "web-vitals": "^4.2.4"
   },
   "scripts": {

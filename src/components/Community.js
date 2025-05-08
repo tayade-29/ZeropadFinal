@@ -13,7 +13,6 @@ import { ChevronLeft, ChevronRight, ChevronDown, X } from 'lucide-react';
 import logo from '../Images/Gallery/logo.png';
 import ig1 from '../Images/Gallery/igImage2.png';
 import ig2 from '../Images/Gallery/igImage1.png';
-import article from '../Images/Article01.png';
 import info from '../Images/infographs.png';
 import axios from "axios";
 import left from '../Images/LeftArrow.png';
@@ -26,7 +25,10 @@ import video1 from './images/video1.png';
 import video2 from './images/video2.png';
 import video3 from './images/video3.png';
 import play from './images/play.png';
-import article2 from './images/article2.png';
+import article1 from '../Images/Article01.png';
+import article2 from '../Images/Article02.png';
+import article3 from '../Images/Article03.png';
+import article4 from '../Images/Article04.png';
 import { useLocation } from 'react-router-dom';
 
 const Community = () => {
@@ -388,8 +390,10 @@ useEffect(() => {
       { id: 3, title: "Success Stories", image: video3, link: "https://youtu.be/ZROoG2d-zzw?si=4rR1L978YemrPSdB" }
     ],
     articles: [
-      { id: 1, title: "Understanding Menstrual Health", image: article, pdf: "/Article 1.pdf" },
-      { id: 2, title: "Understanding Menstrual Health", image: article2, pdf: "/Article 2.pdf" }
+      { id: 1, title: "Understanding Menstrual Health", image: article1, pdf: "/A1 Article.pdf" },
+      { id: 2, title: "Understanding Menstrual Health", image: article2, pdf: "/Article 2.pdf" },
+      { id: 3, title: "Understanding Menstrual Health", image: article3, pdf: "/A3 Artical.pdf" },
+      { id: 4, title: "Understanding Menstrual Health", image: article4, pdf: "/A4 Artical.pdf" }
     ],
     info: [
       {
@@ -853,62 +857,74 @@ useEffect(() => {
           </div>
 
           <div className="w-full max-w-full bg-[#FB6F92] rounded-lg p-5 sm:p-10 overflow-hidden">
-            {activeTab === "videos" ? (
-              <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {content.videos.map((video) => (
-                  <a
-                    key={video.id}
-                    href={video.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="no-underline"
-                  >
-                    <div className="relative group flex-shrink-0">
-                      <div className="relative w-full aspect-w-16 aspect-h-9">
-                        <img
-                          src={video.image}
-                          alt={video.title}
-                          className="w-full h-full object-cover rounded-lg cursor-pointer"
-                        />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <img
-                            src={play}
-                            alt="Play Button"
-                            className="w-12 h-8 sm:w-14 sm:h-10 md:w-16 md:h-12 lg:w-18 lg:h-12"
-                          />
-                        </div>
-                      </div>
-                      <h3 className="text-left text-white mt-2 text-lg sm:text-xl font-lg">
-                        {video.title}
-                      </h3>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            ) : activeTab === "articles" ? (
-              <div className="flex flex-col sm:flex-row justify-center space-x-0 sm:space-x-4 gap-4">
-                {content.articles.map((article, index) => (
-                  <a key={index} href={article.pdf} target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
-                    <img
-                      src={article.image}
-                      alt="Open Article PDF"
-                      className="w-full h-auto max-h-[300px] object-contain rounded-lg cursor-pointer"
-                    />
-                  </a>
-                ))}
-              </div>
-            ) : activeTab === "infographs" ? (
-              <div className="flex justify-center">
-                <Link to={content.info[0].link}>
+  {
+    activeTab === "videos" ? (
+      <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {content.videos.map((video) => (
+          <a
+            key={video.id}
+            href={video.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-underline"
+          >
+            <div className="relative group flex-shrink-0">
+              <div className="relative w-full aspect-w-16 aspect-h-9">
+                <img
+                  src={video.image}
+                  alt={video.title}
+                  className="w-full h-full object-cover rounded-lg cursor-pointer"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
                   <img
-                    src={content.info[0].image}
-                    alt="Open Infograph"
-                    className="w-full h-auto max-h-[300px] object-contain rounded-lg cursor-pointer"
+                    src={play}
+                    alt="Play Button"
+                    className="w-12 h-8 sm:w-14 sm:h-10 md:w-16 md:h-12 lg:w-18 lg:h-12"
                   />
-                </Link>
+                </div>
               </div>
-            ) : null}
-          </div>
+              <h3 className="text-left text-white mt-2 text-lg sm:text-xl font-semibold">
+                {video.title}
+              </h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : activeTab === "articles" ? (
+      <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 px-2">
+        <div className="flex flex-row space-x-6 py-4 min-w-max">
+          {content.articles.map((article, index) => (
+            <a
+              key={index}
+              href={article.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 w-96"
+            >
+              <img
+                src={article.image}
+                alt="Open Article PDF"
+                className="w-full h-auto max-h-[400px] object-contain rounded-xl shadow-md cursor-pointer transition-transform hover:scale-105"
+              />
+            </a>
+          ))}
+        </div>
+      </div>
+    ) : activeTab === "infographs" ? (
+      <div className="flex justify-center">
+        <Link to={content.info[0].link}>
+          <img
+            src={content.info[0].image}
+            alt="Open Infograph"
+            className="w-full h-auto max-h-[300px] object-contain rounded-lg cursor-pointer"
+          />
+        </Link>
+      </div>
+    ) : null
+  }
+</div>
+
+
         </div>
       </section>
 
